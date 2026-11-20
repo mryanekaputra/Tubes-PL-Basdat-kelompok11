@@ -1,0 +1,11 @@
+<h1>Program Kerja</h1><section class="card"><h2>Tambah Program Kerja</h2><form method="post" action="<?= BASE_URL ?>/index.php?url=proker/store" class="form-grid">
+<label>Nama Program Kerja<input name="nama_proker" required></label><label>Divisi Pengampu<select name="id_divisi" required><?php foreach($divisi as $d): ?><option value="<?= $d['id_divisi'] ?>"><?= htmlspecialchars($d['nama_divisi']) ?></option><?php endforeach; ?></select></label>
+<label>Periode<input name="periode" placeholder="2026/2027" required></label><label>Tanggal Pelaksanaan<input type="date" name="tanggal_pelaksanaan"></label>
+<label>Status<select name="status_persiapan"><?php foreach(['Perencanaan','Persiapan','Pelaksanaan','Selesai'] as $s): ?><option><?= $s ?></option><?php endforeach; ?></select></label><label>Total RAB (Rp)<input type="number" name="total_rab" min="0" step="0.01" value="0"></label>
+<label class="full">Konsep Kegiatan<textarea name="konsep_kegiatan"></textarea></label>
+<div class="full"><strong>Penanggung Jawab / Jobdesk (opsional)</strong></div>
+<?php for($i=0;$i<2;$i++): ?><label>Pengurus<select name="pengurus[]"><option value="">Pilih pengurus</option><?php foreach($pengurus as $p): ?><option value="<?= $p['id_pengurus'] ?>"><?= htmlspecialchars($p['nama_pengurus']) ?></option><?php endforeach; ?></select></label><label>Jobdesk<input name="jobdesk[]"></label><?php endfor; ?>
+<div class="full"><button class="btn">Simpan Program Kerja</button></div></form></section>
+<h2>Daftar Program Kerja</h2><div class="table-wrap"><table><tr><th>Program Kerja</th><th>Divisi</th><th>Periode</th><th>Tanggal</th><th>Status</th><th>RAB</th><th>Aksi</th></tr>
+<?php foreach($rows as $r): ?><tr><td><?= htmlspecialchars($r['nama_proker']) ?></td><td><?= htmlspecialchars($r['nama_divisi']) ?></td><td><?= htmlspecialchars($r['periode']) ?></td><td><?= htmlspecialchars($r['tanggal_pelaksanaan'] ?? '-') ?></td><td><span class="pill"><?= htmlspecialchars($r['status_persiapan']) ?></span></td><td>Rp <?= number_format((float)$r['total_rab'],0,',','.') ?></td>
+<td><form method="post" action="<?= BASE_URL ?>/index.php?url=proker/delete" onsubmit="return confirm('Hapus program kerja?')"><input type="hidden" name="id" value="<?= $r['id_proker'] ?>"><button class="btn danger">Hapus</button></form></td></tr><?php endforeach; ?></table></div>

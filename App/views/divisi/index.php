@@ -1,0 +1,4 @@
+<h1>Data Divisi</h1><section class="card"><h2>Tambah Divisi</h2><form method="post" action="<?= BASE_URL ?>/index.php?url=divisi/store" class="form-grid">
+<label>Nama Divisi<input name="nama_divisi" required></label><label>Fokus Kegiatan<input name="fokus_kegiatan"></label><div><button class="btn">Simpan Divisi</button></div></form></section>
+<h2>Daftar Divisi</h2><div class="table-wrap"><table><tr><th>Nama Divisi</th><th>Fokus Kegiatan</th><th>Aksi</th></tr>
+<?php foreach($rows as $r): ?><tr><td><?= htmlspecialchars($r['nama_divisi']) ?></td><td><?= htmlspecialchars($r['fokus_kegiatan'] ?? '') ?></td><td><form method="post" action="<?= BASE_URL ?>/index.php?url=divisi/delete" onsubmit="return confirm('Hapus divisi ini?')"><input type="hidden" name="id" value="<?= $r['id_divisi'] ?>"><button class="btn danger">Hapus</button></form></td></tr><?php endforeach; ?></table></div>

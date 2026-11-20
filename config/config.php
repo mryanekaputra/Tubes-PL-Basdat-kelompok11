@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 define('APP_NAME', 'Sistem Informasi Dagri HMSI ITK');
-define('BASE_URL', '/sistem_dagri_mvc');
+define('BASE_URL', '/Tubes%20PL%26Basdat/public');
 define('DB_HOST', '127.0.0.1');
 define('DB_NAME', 'db_dagri_hmsi');
 define('DB_USER', 'root');
