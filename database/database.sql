@@ -25,7 +25,6 @@ CREATE TABLE users (
   id_pengurus INT NOT NULL UNIQUE,
   username VARCHAR(60) NOT NULL UNIQUE,
   password_hash VARCHAR(255) NOT NULL,
-  role ENUM('admin') NOT NULL DEFAULT 'admin',
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT fk_users_pengurus FOREIGN KEY (id_pengurus) REFERENCES pengurus(id_pengurus)
     ON UPDATE CASCADE ON DELETE CASCADE
@@ -82,11 +81,8 @@ CREATE TABLE rapat_koordinasi (
     ON UPDATE CASCADE ON DELETE SET NULL
 ) ENGINE=InnoDB;
 
--- Data awal divisi
 INSERT IGNORE INTO divisi (nama_divisi, fokus_kegiatan) VALUES
 ('Keterampilan Internal','Pengembangan keterampilan internal'),
 ('Harmonisasi Internal','Membangun keharmonisan anggota'),
 ('Hubungan Internal','Menjaga hubungan internal'),
 ('Kajian Internal','Kajian dan pengembangan internal');
-
--- Akun awal dibuat melalui halaman setup_admin.php (hapus file tersebut setelah akun dibuat).
